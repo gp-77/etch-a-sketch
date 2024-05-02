@@ -26,13 +26,30 @@ function createGrid(size) {
 
     for(let t=0; t<size; t++) {
       let div = document.createElement("div");
-      div.style.backgroundColor = 'blue';
+
+      let colorR = Math.round(Math.random() * 255);
+      let colorG = Math.round(Math.random() * 255);
+      let colorB = Math.round(Math.random() * 255);
+
+      console.log("colorR: " + colorR);
+      console.log("colorG: " + colorG);
+      console.log("colorB: " + colorB);
+
+      // div.style.backgroundColor = 'blue';
+      div.style.backgroundColor = 'rgb(' +  colorR + ',' + colorG + ',' + colorB + ')';
+      div.style.opacity = '1.0';
+
       div.style.border = '2px solid red';
       div.style.height = divSize + "px";
       div.style.width = divSize + "px";
 
       div.addEventListener('mouseover', (e) => {
-        div.style.backgroundColor = "black";
+        // div.style.backgroundColor = "black";
+        let opacity = parseFloat(div.style.opacity) - 0.1;
+        if(opacity <= 0.0) {
+          opacity = 0.0;
+        }
+        div.style.opacity = opacity.toString();
       });
 
       divFather.appendChild(div);
